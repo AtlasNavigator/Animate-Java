@@ -8,6 +8,7 @@ final public class Animate {
 
     private int oneX = 200; // Starting X coordinate
     private int oneY = 200; // Starting Y coordinate
+    private int sunOnly = 200; //Starting sun value
 
     boolean up = false;
     boolean down = true;
@@ -52,6 +53,9 @@ final public class Animate {
             //Inside Color
             g.setColor(Color.PINK);
             g.fillRect(6, 6, this.getWidth()-12, this.getHeight()-12);
+            //Sun
+            g.setColor(Color.YELLOW);
+            g.fillOval(40, sunOnly, this.getWidth()/4, this.getHeight()/4);
                         
             //Dot
             Color purple = new Color(128, 0, 128); //Make purple a color
@@ -82,10 +86,12 @@ final public class Animate {
     	if(up){
 //            oneY--;
     		oneY++;
+    		sunOnly++;
         }
         if(down){
 //            oneY++;
         	oneY--;
+        	sunOnly--;
         }
         if(left){
 //            oneX--;
@@ -97,29 +103,39 @@ final public class Animate {
         }	
     }
     private void checkBounds(){ //Edge Detection
-    	if(oneX >= frame.getWidth()-27){
+    	if(oneX >= frame.getWidth()-30 - scale){
 //            right = false;
 //            left = true;
     		right = true;
     		left = false;
         }
-        if(oneX <= frame.getWidth() + 7 - frame.getWidth()){
+        if(oneX <= 6){
 //            right = true;
 //            left = false;
         	right = false;
     		left = true;
         }
-        if(oneY >= frame.getHeight()-27*scale + scale){
+        if(oneY >= frame.getHeight()-27*scale - scale){
 //            up = true;
 //            down = false;
         	up = false;
             down = true;
         }
-        if(oneY <= frame.getWidth() + scale*7 - frame.getWidth()){
+        if(oneY <= 6){
 //            up = false;
 //            down = true;
         	up = true;
             down = false;
         }	
+        if(sunOnly <= frame.getHeight()/3) {
+        	up = true;
+        	down  = false;
+        	
+        }
+        if(sunOnly >= frame.getHeight()-27*scale) {
+        	up = false;
+        	down = true;
+        }
+        	
     }
 }
