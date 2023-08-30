@@ -8,12 +8,21 @@ final public class Animate {
 
     private int oneX = 200; // Starting X coordinate
     private int oneY = 200; // Starting Y coordinate
+    private int twoX = 190; // Starting X for 2nd Dot
+    private int twoY = 190; // Starting Y for 2nd Dot
     private int sunOnly = 200; //Starting sun value
 
     boolean up = false;
     boolean down = true;
     boolean left = false;
     boolean right = true;
+    boolean up2 = false;
+    boolean down2 = true;
+    boolean up3 = false;
+    boolean down3 = true;
+    boolean left3 = false;
+    boolean right3 = true;
+   
     
     int scale = 2; // Defines scale for the dot
 
@@ -64,6 +73,10 @@ final public class Animate {
 //            g.fillRect(oneX-scale/2, oneY - scale*2, 2, 10);
 //            g.fillRect(oneX - scale/2, oneY + scale*2, 10, 2);
 //            g.fillOval(x, y, scale*6, scale*6);
+            
+            //Dot 2
+            g.setColor(Color.white);
+            g.fillOval(twoX - scale/2, twoY - scale/2, scale*6, scale*6); // This is the dot
 
             
             //Test Dot
@@ -86,12 +99,10 @@ final public class Animate {
     	if(up){
 //            oneY--;
     		oneY++;
-    		sunOnly++;
         }
         if(down){
 //            oneY++;
         	oneY--;
-        	sunOnly--;
         }
         if(left){
 //            oneX--;
@@ -100,7 +111,29 @@ final public class Animate {
         if(right){
 //            oneX++;
         	oneX--;
-        }	
+        }
+        if(up2) {
+        	sunOnly++;
+        }
+        if(down2) {
+        	sunOnly--;
+        }
+        if(up3){
+//          oneY--;
+	  		twoY+=2;
+      }
+      if(down3){
+//          oneY++;
+      	twoY-=2;
+      }
+      if(left3){
+//          oneX--;
+      	twoX+=2;
+      }
+      if(right3){
+//          oneX++;
+      	twoX-=2;
+      }
     }
     private void checkBounds(){ //Edge Detection
     	if(oneX >= frame.getWidth()-30 - scale){
@@ -128,14 +161,38 @@ final public class Animate {
             down = false;
         }	
         if(sunOnly <= frame.getHeight()/3) {
-        	up = true;
-        	down  = false;
+        	up2 = true;
+        	down2  = false;
         	
         }
-        if(sunOnly >= frame.getHeight()-27*scale) {
-        	up = false;
-        	down = true;
+        if(sunOnly >= frame.getHeight()) {
+        	up2 = false;
+        	down2 = true;
         }
+        if(twoX >= frame.getWidth()-30 - scale){
+//          right = false;
+//          left = true;
+  		right3 = true;
+  		left3 = false;
+      }
+      if(twoX <= 6){
+//          right = true;
+//          left = false;
+      	right3 = false;
+  		left3 = true;
+      }
+      if(twoY >= frame.getHeight()-27*scale - scale){
+//          up = true;
+//          down = false;
+      	up3 = false;
+          down3 = true;
+      }
+      if(twoY <= 6){
+//          up = false;
+//          down = true;
+      	up3 = true;
+          down3 = false;
+      }	
         	
     }
 }
