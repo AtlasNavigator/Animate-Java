@@ -62,9 +62,12 @@ final public class Animate {
             //Inside Color
             g.setColor(Color.PINK);
             g.fillRect(6, 6, this.getWidth()-12, this.getHeight()-12);
+            //Centered Square
+            g.setColor(Color.green);
+            g.fillRect((this.getWidth()/2)-71, (this.getHeight()/2)-71, 142, 142);
             //Sun
             g.setColor(Color.YELLOW);
-            g.fillOval(40, sunOnly, this.getWidth()/4, this.getHeight()/4);
+            g.fillOval((this.getWidth()/2)-71, sunOnly, 142, 142);
                         
             //Dot
             Color purple = new Color(128, 0, 128); //Make purple a color
